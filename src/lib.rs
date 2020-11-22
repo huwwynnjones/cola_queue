@@ -16,14 +16,16 @@ fn who_is_next(names: &Names, n: usize) -> Name {
     let mut cola_queue = Vec::new();
     for name in names {
         cola_queue.push(name);
+    }
+    for name in names {
+        cola_queue.push(name);
         cola_queue.push(name);
     }
-    if n== 1 {
-        *cola_queue[n]
+    if n == 1 {
+        *cola_queue[n-1]
     } else {
-        Name::Leonard
+        *cola_queue[n-1]
     }
-
 }
 
 #[cfg(test)]
