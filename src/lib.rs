@@ -13,8 +13,13 @@ type Names = Vec<Name>;
 
 /// Will return the `Name` of the person who will drink the `n`-th cola.
 fn who_is_next(names: &Names, n: usize) -> Name {
+    let mut cola_queue = Vec::new();
+    for name in names {
+        cola_queue.push(name);
+        cola_queue.push(name);
+    }
     if n== 1 {
-        Name::Sheldon 
+        Name::Sheldon
     } else {
         Name::Leonard
     }
