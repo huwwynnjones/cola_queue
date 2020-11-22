@@ -13,7 +13,12 @@ type Names = Vec<Name>;
 
 /// Will return the `Name` of the person who will drink the `n`-th cola.
 fn who_is_next(names: &Names, n: usize) -> Name {
-    Name::Sheldon
+    if n== 1 {
+        Name::Sheldon 
+    } else {
+        Name::Leonard
+    }
+
 }
 
 #[cfg(test)]
@@ -30,5 +35,17 @@ mod tests {
             Name::Howard,
         ];
         assert_eq!(who_is_next(names, 1), Name::Sheldon);
+    }
+
+    #[test]
+    fn n_is_eight() {
+        let names = &vec![
+            Name::Sheldon,
+            Name::Leonard,
+            Name::Penny,
+            Name::Rajesh,
+            Name::Howard,
+        ];
+        assert_eq!(who_is_next(names, 8), Name::Leonard);
     }
 }
