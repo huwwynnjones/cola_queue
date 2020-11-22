@@ -19,7 +19,7 @@ fn who_is_next(names: &Names, n: usize) -> Name {
         cola_queue.push(name);
     }
     if n== 1 {
-        Name::Sheldon
+        *cola_queue[n]
     } else {
         Name::Leonard
     }
