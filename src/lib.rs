@@ -45,6 +45,18 @@ mod tests {
     }
 
     #[test]
+    fn n_is_two() {
+        let names = &vec![
+            Name::Sheldon,
+            Name::Leonard,
+            Name::Penny,
+            Name::Rajesh,
+            Name::Howard,
+        ];
+        assert_eq!(who_is_next(names, 2), Name::Leonard);
+    }
+
+    #[test]
     fn n_is_eight() {
         let names = &vec![
             Name::Sheldon,
