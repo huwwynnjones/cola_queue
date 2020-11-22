@@ -12,5 +12,17 @@ fn who_is_next(names: &Names, n: usize) -> Name {
 
 #[cfg(test)]
 mod tests {
-    
+    use super::*;
+
+    #[test]
+    fn n_is_one() {
+        let names = &vec![
+            Name::Sheldon,
+            Name::Leonard,
+            Name::Penny,
+            Name::Rajesh,
+            Name::Howard,
+        ];
+        assert_eq!(who_is_next(names, 1), Name::Sheldon);
+    }
 }
