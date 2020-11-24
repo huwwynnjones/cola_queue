@@ -31,10 +31,10 @@ fn who_is_next(names: &Names, n: usize) -> Name {
 fn next_positions(
     array_length: usize,
     nmb_of_repetitions: usize,
-    initial_idx: usize,
+    initial_position: usize,
 ) -> Vec<usize> {
     let mut positions = Vec::new();
-    let start = array_length + (nmb_of_repetitions * initial_idx);
+    let start = array_length + (nmb_of_repetitions * initial_position);
     let end = start + nmb_of_repetitions;
     for i in start..end {
         positions.push(i)
