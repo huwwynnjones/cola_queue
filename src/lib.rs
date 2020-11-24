@@ -22,13 +22,17 @@ fn who_is_next(names: &Names, n: usize) -> Name {
         cola_queue.push(name);
     }
     if n == 1 {
-        *cola_queue[n-1]
+        *cola_queue[n - 1]
     } else {
-        *cola_queue[n-1]
+        *cola_queue[n - 1]
     }
 }
 
-fn next_positions(array_length: usize, nmb_of_repetitions: usize, initial_idx: usize) -> Vec<usize> {
+fn next_positions(
+    array_length: usize,
+    nmb_of_repetitions: usize,
+    initial_idx: usize,
+) -> Vec<usize> {
     let mut positions = Vec::new();
     let start = array_length + (nmb_of_repetitions * initial_idx);
     let end = start + nmb_of_repetitions;
@@ -80,6 +84,12 @@ mod tests {
 
     #[test]
     fn test_next_positions_first_sheldon() {
-        assert_eq!(next_positions(5, 2, 0), [5,6])
+        assert_eq!(next_positions(5, 2, 0), [5, 6])
+    }
+
+    #[test]
+    fn test_various_sheldon_positions() {
+        assert_eq!(next_positions(15, 4, 0), [15, 16, 17, 18]);
+        assert_eq!(next_positions(35, 8, 0), [35, 36, 37, 38, 39, 40, 41, 42])
     }
 }
