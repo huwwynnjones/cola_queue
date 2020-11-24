@@ -13,14 +13,6 @@ type Names = Vec<Name>;
 
 /// Will return the `Name` of the person who will drink the `n`-th cola.
 fn who_is_next(names: &Names, n: usize) -> Name {
-    let cola_queues = Vec::new();
-    let a_cola_queue = Vec::new();
-    for name in names {
-        a_cola_queue.push(name);
-    }
-    cola_queues.push(a_cola_queue);
-
-
     let mut cola_queue = Vec::new();
     for name in names {
         cola_queue.push(name);
@@ -34,6 +26,16 @@ fn who_is_next(names: &Names, n: usize) -> Name {
     } else {
         *cola_queue[n-1]
     }
+}
+
+fn next_positions(array_length: usize, nmb_of_repetitions: usize, initial_idx: usize) -> Vec<usize> {
+    let mut positions = Vec::new();
+    let start = array_length + (nmb_of_repetitions * initial_idx);
+    let end = start + nmb_of_repetitions;
+    for i in start..end {
+        positions.push(i)
+    }
+    positions
 }
 
 #[cfg(test)]
