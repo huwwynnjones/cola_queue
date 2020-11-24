@@ -42,6 +42,19 @@ fn next_positions(
     positions
 }
 
+fn increase_array_length_and_repetitions(
+    array_length: usize,
+    nmb_of_repetitions: usize,
+) -> (usize, usize) {
+    if array_length == 0 {
+        (5, 2)
+    } else {
+        let length = (array_length * 2) + 5;
+        let repetitions = nmb_of_repetitions * 2;
+        (length, repetitions)
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -98,5 +111,10 @@ mod tests {
         assert_eq!(next_positions(5, 2, 2), [9, 10]);
         assert_eq!(next_positions(15, 4, 2), [23, 24, 25, 26]);
         assert_eq!(next_positions(35, 8, 2), [51, 52, 53, 54, 55, 56, 57, 58])
+    }
+
+    #[test]
+    fn test_increase_array_length_and_repetitions() {
+        assert_eq!(increase_array_length_and_repetitions(0, 0), (5, 2));
     }
 }
