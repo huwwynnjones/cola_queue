@@ -117,4 +117,10 @@ mod tests {
     fn test_increase_array_length_and_repetitions() {
         assert_eq!(increase_array_length_and_repetitions(0, 0), (5, 2));
     }
+
+    #[test]
+    fn test_various_increase_array_length_and_repetitions() {
+        assert_eq!(increase_array_length_and_repetitions(5, 2), (15, 4));
+        assert_eq!(increase_array_length_and_repetitions(15, 4), (35, 8));
+    }
 }
