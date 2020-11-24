@@ -144,6 +144,18 @@ mod tests {
     }
 
     #[test]
+    fn n_is_fifty_two() {
+        let names = &vec![
+            Name::Sheldon,
+            Name::Leonard,
+            Name::Penny,
+            Name::Rajesh,
+            Name::Howard,
+        ];
+        assert_eq!(who_is_next(names, 52), Name::Penny);
+    }
+
+    #[test]
     fn test_next_positions_first_sheldon() {
         assert_eq!(next_positions(5, 2, 0), [5, 6])
     }
