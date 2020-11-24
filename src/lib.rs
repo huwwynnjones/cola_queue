@@ -18,43 +18,43 @@ fn who_is_next(names: &Names, n: usize) -> Name {
         if next_positions(
             array_length_and_repetions.0,
             array_length_and_repetions.1,
-            0
+            0,
         )
         .contains(&n)
         {
-            return Name::Sheldon
+            return Name::Sheldon;
         } else if next_positions(
             array_length_and_repetions.0,
             array_length_and_repetions.1,
-            1
+            1,
         )
         .contains(&n)
         {
-            return Name::Leonard
+            return Name::Leonard;
         } else if next_positions(
             array_length_and_repetions.0,
             array_length_and_repetions.1,
-            2
+            2,
         )
         .contains(&n)
         {
-            return Name::Penny
+            return Name::Penny;
         } else if next_positions(
             array_length_and_repetions.0,
             array_length_and_repetions.1,
-            3
+            3,
         )
         .contains(&n)
         {
-            return Name::Rajesh
+            return Name::Rajesh;
         } else if next_positions(
             array_length_and_repetions.0,
             array_length_and_repetions.1,
-            4
+            4,
         )
         .contains(&n)
         {
-            return Name::Howard
+            return Name::Howard;
         } else {
             array_length_and_repetions = increase_array_length_and_repetitions(
                 array_length_and_repetions.0,
@@ -153,6 +153,31 @@ mod tests {
             Name::Howard,
         ];
         assert_eq!(who_is_next(names, 52), Name::Penny);
+    }
+
+    #[test]
+    #[ignore]
+    fn n_is_very_large() {
+        let names = &vec![
+            Name::Sheldon,
+            Name::Leonard,
+            Name::Penny,
+            Name::Rajesh,
+            Name::Howard,
+        ];
+        assert_eq!(who_is_next(names, 7_230_702_951), Name::Leonard);
+    }
+
+    #[test]
+    fn n_is_three_hundred_and_seventeen() {
+        let names = &vec![
+            Name::Sheldon,
+            Name::Leonard,
+            Name::Penny,
+            Name::Rajesh,
+            Name::Howard,
+        ];
+        assert_eq!(who_is_next(names, 317), Name::Sheldon);
     }
 
     #[test]
