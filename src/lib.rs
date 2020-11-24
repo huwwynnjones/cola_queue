@@ -92,4 +92,11 @@ mod tests {
         assert_eq!(next_positions(15, 4, 0), [15, 16, 17, 18]);
         assert_eq!(next_positions(35, 8, 0), [35, 36, 37, 38, 39, 40, 41, 42])
     }
+
+    #[test]
+    fn test_various_penny_positions() {
+        assert_eq!(next_positions(5, 2, 2), [9, 10]);
+        assert_eq!(next_positions(15, 4, 2), [23, 24, 25, 26]);
+        assert_eq!(next_positions(35, 8, 2), [51, 52, 53, 54, 55, 56, 57, 58])
+    }
 }
