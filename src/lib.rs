@@ -15,44 +15,78 @@ type Names = Vec<Name>;
 fn who_is_next(names: &Names, n: usize) -> Name {
     let mut array_length_and_repetions = increase_array_length_and_repetitions(0, 0);
     loop {
-        if next_positions(
+        if n >= next_positions(
             array_length_and_repetions.0,
             array_length_and_repetions.1,
             0,
         )
-        .contains(&n)
+        .0 && n
+            <= next_positions(
+                array_length_and_repetions.0,
+                array_length_and_repetions.1,
+                0,
+            )
+            .1
         {
             return Name::Sheldon;
-        } else if next_positions(
-            array_length_and_repetions.0,
-            array_length_and_repetions.1,
-            1,
-        )
-        .contains(&n)
+        } else if n
+            >= next_positions(
+                array_length_and_repetions.0,
+                array_length_and_repetions.1,
+                0,
+            )
+            .0
+            && n <= next_positions(
+                array_length_and_repetions.0,
+                array_length_and_repetions.1,
+                1,
+            )
+            .1
         {
             return Name::Leonard;
-        } else if next_positions(
-            array_length_and_repetions.0,
-            array_length_and_repetions.1,
-            2,
-        )
-        .contains(&n)
+        } else if n
+            >= next_positions(
+                array_length_and_repetions.0,
+                array_length_and_repetions.1,
+                0,
+            )
+            .0
+            && n <= next_positions(
+                array_length_and_repetions.0,
+                array_length_and_repetions.1,
+                2,
+            )
+            .1
         {
             return Name::Penny;
-        } else if next_positions(
-            array_length_and_repetions.0,
-            array_length_and_repetions.1,
-            3,
-        )
-        .contains(&n)
+        } else if n
+            >= next_positions(
+                array_length_and_repetions.0,
+                array_length_and_repetions.1,
+                0,
+            )
+            .0
+            && n <= next_positions(
+                array_length_and_repetions.0,
+                array_length_and_repetions.1,
+                3,
+            )
+            .1
         {
             return Name::Rajesh;
-        } else if next_positions(
-            array_length_and_repetions.0,
-            array_length_and_repetions.1,
-            4,
-        )
-        .contains(&n)
+        } else if n
+            >= next_positions(
+                array_length_and_repetions.0,
+                array_length_and_repetions.1,
+                0,
+            )
+            .0
+            && n <= next_positions(
+                array_length_and_repetions.0,
+                array_length_and_repetions.1,
+                4,
+            )
+            .1
         {
             return Name::Howard;
         } else {
@@ -80,14 +114,10 @@ fn next_positions(
     array_length: usize,
     nmb_of_repetitions: usize,
     initial_position: usize,
-) -> Vec<usize> {
-    let mut positions = Vec::new();
+) -> (usize, usize) {
     let start = array_length + (nmb_of_repetitions * initial_position);
-    let end = start + nmb_of_repetitions;
-    for i in start..end {
-        positions.push(i)
-    }
-    positions
+    let end = start + nmb_of_repetitions -1 ;
+    (start, end)
 }
 
 fn increase_array_length_and_repetitions(
@@ -156,7 +186,6 @@ mod tests {
     }
 
     #[test]
-    #[ignore]
     fn n_is_very_large() {
         let names = &vec![
             Name::Sheldon,
@@ -182,20 +211,20 @@ mod tests {
 
     #[test]
     fn test_next_positions_first_sheldon() {
-        assert_eq!(next_positions(5, 2, 0), [5, 6])
+        assert_eq!(next_positions(5, 2, 0), (5, 6))
     }
 
     #[test]
     fn test_various_sheldon_positions() {
-        assert_eq!(next_positions(15, 4, 0), [15, 16, 17, 18]);
-        assert_eq!(next_positions(35, 8, 0), [35, 36, 37, 38, 39, 40, 41, 42])
+        assert_eq!(next_positions(15, 4, 0), (15, 18));
+        assert_eq!(next_positions(35, 8, 0), (35, 42))
     }
 
     #[test]
     fn test_various_penny_positions() {
-        assert_eq!(next_positions(5, 2, 2), [9, 10]);
-        assert_eq!(next_positions(15, 4, 2), [23, 24, 25, 26]);
-        assert_eq!(next_positions(35, 8, 2), [51, 52, 53, 54, 55, 56, 57, 58])
+        assert_eq!(next_positions(5, 2, 2), (9, 10));
+        assert_eq!(next_positions(15, 4, 2), (23, 26));
+        assert_eq!(next_positions(35, 8, 2), (51, 58))
     }
 
     #[test]
