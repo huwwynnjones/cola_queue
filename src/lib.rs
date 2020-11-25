@@ -33,7 +33,7 @@ fn who_is_next(names: &Names, n: usize) -> Name {
             >= next_positions(
                 array_length_and_repetions.0,
                 array_length_and_repetions.1,
-                0,
+                1,
             )
             .0
             && n <= next_positions(
@@ -48,7 +48,7 @@ fn who_is_next(names: &Names, n: usize) -> Name {
             >= next_positions(
                 array_length_and_repetions.0,
                 array_length_and_repetions.1,
-                0,
+                2,
             )
             .0
             && n <= next_positions(
@@ -63,7 +63,7 @@ fn who_is_next(names: &Names, n: usize) -> Name {
             >= next_positions(
                 array_length_and_repetions.0,
                 array_length_and_repetions.1,
-                0,
+                3,
             )
             .0
             && n <= next_positions(
@@ -78,7 +78,7 @@ fn who_is_next(names: &Names, n: usize) -> Name {
             >= next_positions(
                 array_length_and_repetions.0,
                 array_length_and_repetions.1,
-                0,
+                4,
             )
             .0
             && n <= next_positions(
