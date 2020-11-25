@@ -15,6 +15,32 @@ type Names = Vec<Name>;
 fn who_is_next(names: &Names, n: usize) -> Name {
     let mut array_length_and_repetions = increase_array_length_and_repetitions(0, 0);
     loop {
+        for (i, name) in names.iter().enumerate() {
+            if n >= next_positions(
+                array_length_and_repetions.0,
+                array_length_and_repetions.1,
+                i,
+            )
+            .0 && n
+                <= next_positions(
+                    array_length_and_repetions.0,
+                    array_length_and_repetions.1,
+                    i,
+                )
+                .1
+            {
+                return *name;
+            } 
+        }
+        array_length_and_repetions = increase_array_length_and_repetitions(
+            array_length_and_repetions.0,
+            array_length_and_repetions.1,
+        );
+        if array_length_and_repetions.0 > n {
+            break;
+        }
+    }
+    loop {
         if n >= next_positions(
             array_length_and_repetions.0,
             array_length_and_repetions.1,
