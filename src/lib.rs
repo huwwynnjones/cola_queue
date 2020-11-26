@@ -24,23 +24,6 @@ fn who_is_next(names: &Names, n: usize) -> Name {
         array_length = (array_length * 2) + 5;
         nmb_name_repetitions *= 2;
     }
-    let mut array_length_and_repetions = increase_array_length_and_repetitions(0, 0);
-    while array_length_and_repetions.0 <= n {
-        for (i, name) in names.iter().enumerate() {
-            if within_position_range(
-                array_length_and_repetions.0,
-                array_length_and_repetions.1,
-                i,
-                n,
-            ) {
-                return *name;
-            }
-        }
-        array_length_and_repetions = increase_array_length_and_repetitions(
-            array_length_and_repetions.0,
-            array_length_and_repetions.1,
-        );
-    }
     let mut cola_queue = Vec::new();
     for name in names {
         cola_queue.push(name);
