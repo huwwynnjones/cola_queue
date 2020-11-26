@@ -24,15 +24,7 @@ fn who_is_next(names: &Names, n: usize) -> Name {
         array_length = (array_length * 2) + 5;
         nmb_name_repetitions *= 2;
     }
-    let mut cola_queue = Vec::new();
-    for name in names {
-        cola_queue.push(name);
-    }
-    if n == 1 {
-        *cola_queue[n - 1]
-    } else {
-        *cola_queue[n - 1]
-    }
+    names[n - 1]
 }
 
 fn within_position_range(
