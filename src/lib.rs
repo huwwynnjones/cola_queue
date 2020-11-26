@@ -16,13 +16,25 @@ fn who_is_next(names: &Names, n: usize) -> Name {
     let mut array_length_and_repetions = increase_array_length_and_repetitions(0, 0);
     while array_length_and_repetions.0 <= n{
         for (i, name) in names.iter().enumerate() {
-            if n >= next_positions(
+            if within_position_range(array_length_and_repetions.0, array_length_and_repetions.1, i, n)
+            {
+                return *name;
+            }
+        }
+        array_length_and_repetions = increase_array_length_and_repetitions(
+            array_length_and_repetions.0,
+            array_length_and_repetions.1,
+        );
+    }
+    while array_length_and_repetions.0 <= n{
+        for (i, name) in names.iter().enumerate() {
+            if n >= position_range(
                 array_length_and_repetions.0,
                 array_length_and_repetions.1,
                 i,
             )
             .0 && n
-                <= next_positions(
+                <= position_range(
                     array_length_and_repetions.0,
                     array_length_and_repetions.1,
                     i,
@@ -48,7 +60,7 @@ fn who_is_next(names: &Names, n: usize) -> Name {
     }
 }
 
-fn next_positions(
+fn position_range(
     array_length: usize,
     nmb_of_repetitions: usize,
     initial_position: usize,
@@ -56,6 +68,17 @@ fn next_positions(
     let start = array_length + (nmb_of_repetitions * initial_position);
     let end = start + nmb_of_repetitions - 1;
     (start, end)
+}
+
+fn within_position_range(
+    array_length: usize,
+    nmb_of_repetitions: usize,
+    initial_position: usize,
+    n: usize,
+) -> bool {
+    let start = array_length + (nmb_of_repetitions * initial_position);
+    let end = start + nmb_of_repetitions - 1;
+    n >= start && n <= end
 }
 
 fn increase_array_length_and_repetitions(
@@ -148,21 +171,30 @@ mod tests {
     }
 
     #[test]
-    fn test_next_positions_first_sheldon() {
-        assert_eq!(next_positions(5, 2, 0), (5, 6))
+    fn test_within_position_range() {
+        assert!(within_position_range(5, 2, 0, 5));
+        assert!(within_position_range(15, 4, 2, 25));
+        assert!(within_position_range(35, 8, 2, 56));
+        assert!(within_position_range(35, 8, 2, 56));
+        assert!(!within_position_range(35, 8, 2, 89));
+    }
+
+    #[test]
+    fn test_position_range_first_sheldon() {
+        assert_eq!(position_range(5, 2, 0), (5, 6))
     }
 
     #[test]
     fn test_various_sheldon_positions() {
-        assert_eq!(next_positions(15, 4, 0), (15, 18));
-        assert_eq!(next_positions(35, 8, 0), (35, 42))
+        assert_eq!(position_range(15, 4, 0), (15, 18));
+        assert_eq!(position_range(35, 8, 0), (35, 42))
     }
 
     #[test]
     fn test_various_penny_positions() {
-        assert_eq!(next_positions(5, 2, 2), (9, 10));
-        assert_eq!(next_positions(15, 4, 2), (23, 26));
-        assert_eq!(next_positions(35, 8, 2), (51, 58))
+        assert_eq!(position_range(5, 2, 2), (9, 10));
+        assert_eq!(position_range(15, 4, 2), (23, 26));
+        assert_eq!(position_range(35, 8, 2), (51, 58))
     }
 
     #[test]
