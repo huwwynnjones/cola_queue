@@ -14,10 +14,14 @@ type Names = Vec<Name>;
 /// Will return the `Name` of the person who will drink the `n`-th cola.
 fn who_is_next(names: &Names, n: usize) -> Name {
     let mut array_length_and_repetions = increase_array_length_and_repetitions(0, 0);
-    while array_length_and_repetions.0 <= n{
+    while array_length_and_repetions.0 <= n {
         for (i, name) in names.iter().enumerate() {
-            if within_position_range(array_length_and_repetions.0, array_length_and_repetions.1, i, n)
-            {
+            if within_position_range(
+                array_length_and_repetions.0,
+                array_length_and_repetions.1,
+                i,
+                n,
+            ) {
                 return *name;
             }
         }
@@ -35,16 +39,6 @@ fn who_is_next(names: &Names, n: usize) -> Name {
     } else {
         *cola_queue[n - 1]
     }
-}
-
-fn position_range(
-    array_length: usize,
-    nmb_of_repetitions: usize,
-    initial_position: usize,
-) -> (usize, usize) {
-    let start = array_length + (nmb_of_repetitions * initial_position);
-    let end = start + nmb_of_repetitions - 1;
-    (start, end)
 }
 
 fn within_position_range(
@@ -154,24 +148,6 @@ mod tests {
         assert!(within_position_range(35, 8, 2, 56));
         assert!(within_position_range(35, 8, 2, 56));
         assert!(!within_position_range(35, 8, 2, 89));
-    }
-
-    #[test]
-    fn test_position_range_first_sheldon() {
-        assert_eq!(position_range(5, 2, 0), (5, 6))
-    }
-
-    #[test]
-    fn test_various_sheldon_positions() {
-        assert_eq!(position_range(15, 4, 0), (15, 18));
-        assert_eq!(position_range(35, 8, 0), (35, 42))
-    }
-
-    #[test]
-    fn test_various_penny_positions() {
-        assert_eq!(position_range(5, 2, 2), (9, 10));
-        assert_eq!(position_range(15, 4, 2), (23, 26));
-        assert_eq!(position_range(35, 8, 2), (51, 58))
     }
 
     #[test]
