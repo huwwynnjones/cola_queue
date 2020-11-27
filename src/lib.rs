@@ -13,7 +13,7 @@ type Names = Vec<Name>;
 
 /// Will return the `Name` of the person who will drink the `n`-th cola.
 fn who_is_next(names: &Names, n: usize) -> Name {
-    let mut array_length = 5;
+    let mut array_length = names.len();
     let mut nmb_name_repetitions = 2;
     while array_length <= n {
         for (i, name) in names.iter().enumerate() {
@@ -21,7 +21,7 @@ fn who_is_next(names: &Names, n: usize) -> Name {
                 return *name;
             }
         }
-        array_length = (array_length * 2) + 5;
+        array_length = (array_length * 2) + names.len();
         nmb_name_repetitions *= 2;
     }
     names[n - 1]
@@ -76,6 +76,12 @@ mod tests {
             Name::Howard,
         ];
         assert_eq!(who_is_next(names, 8), Name::Leonard);
+    }
+
+    #[test]
+    fn n_is_eight_small_list() {
+        let names = &vec![Name::Sheldon, Name::Leonard];
+        assert_eq!(who_is_next(names, 8), Name::Sheldon);
     }
 
     #[test]
