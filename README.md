@@ -8,7 +8,7 @@ better understanding of maths, and I don't think that I could have reached it th
 the maths on paper to reach it.
 
 Here is the best solution. It relies on recognising that n can be worked backwards, reducing the array-length until it is back
-until the stating size to find the correct index number.
+until the size of names to find the correct index number.
 
 ```
 fn who_is_next(names: &Names, n: usize) -> Name {
